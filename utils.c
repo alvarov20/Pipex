@@ -7,7 +7,9 @@ char	*check_access(t_data *data, char **com)
 
 	x = 0;
 	compath = NULL;
-	if (access(com[0], F_OK) == -1)
+	if (!com[0])
+		return("error");
+	if (access(com[0], F_OK | X_OK) == -1)
 	{
 		if (data->path == NULL)
 			return ("error");

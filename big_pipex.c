@@ -1,8 +1,17 @@
 #include "pipex.h"
 
-void	big_pipex(int argc, char **argv, char **env, t_data *data)
+void	open_files(int argc, char **argv, t_data *data)
 {
-	if (ft_strncmp(argv[1], "here_doc", ft_strlen(argv[1])) == 0)
+	if (argv[1][0] == '\0' || argv[argc - 1][0] == '\0')
+	{
+		if (access(argv[1], O_RDONLY != 0))
+			perror("Error");
+		data->outfile = open(argv[argc - 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
+		if (access(argv[argc - 1], O_RDONLY != 0))
+			perror("Error");
+		exit (1);
+	}
+	else if (ft_strncmp(argv[1], "here_doc", ft_strlen(argv[1])) == 0)
 	{
 		here_doc(data, argv);
 		data->infile = open("/tmp/.file", O_RDWR | O_APPEND | O_CREAT, 0644);
@@ -13,11 +22,13 @@ void	big_pipex(int argc, char **argv, char **env, t_data *data)
 		data->infile = open(argv[1], O_RDONLY);
 		data->outfile = open(argv[argc - 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	}
+}
+void	big_pipex(int argc, char **argv, char **env, t_data *data)
+{
+	open_files(argc, argv, data);
 	get_args(argc, argv, data);
-	printf("NOSE AQUI TODO BIEN\n");
 	get_path(env, data);
-	printf("NOSE AQUI TODO BIEN22222\n");
-	processes(data, argv);
+	processes(data, argc, argv);
 }
 
 void	here_doc(t_data *data, char **argv)
@@ -36,14 +47,14 @@ void	here_doc(t_data *data, char **argv)
 	}
 }
 
-void	processes(t_data *data, char **argv)
+void	processes(t_data *data, int argc, char **argv)
 {
 	pid_t	pid;
 
+	pid = 0;
 	pipe(data->fd);
 	dup2(data->infile, STDIN_FILENO);
 	close(data->infile);
-	printf("NOSE AQUI TODO BIEN33333\n");
 	first_process(data, argv);
 	waitpid(pid, NULL, 0);
 	data->n_arg++;
@@ -52,15 +63,20 @@ void	processes(t_data *data, char **argv)
 		middle_processes(data);
 		data->n_arg++;
 	}
-	printf("NOSE AQUI TODO BIEN44444\n");
+	if (access("/tmp/.file", F_OK) == 0)
+		unlink("/tmp/.file");
 	dup2(data->outfile, STDOUT_FILENO);
 	close(data->outfile);
+	if (access(argv[argc - 1], O_RDONLY != 0))
+		perror("Error");
 	execute(data);
 }
 
 void	middle_processes(t_data *data)
 {
 	pid_t	pid;
+
+	pid = 0;
 	pipe(data->fd);
 	pid = fork();
 	if (pid == 0)
@@ -81,6 +97,7 @@ void	first_process(t_data *data, char **argv)
 {
 	pid_t	pid;
 
+	pid = 0;
 	pipe(data->fd);
 	pid = fork();
 	if (pid == 0)

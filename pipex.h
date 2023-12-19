@@ -22,7 +22,7 @@ typedef struct s_data
 }			t_data;
 
 void	big_pipex(int argc, char **argv, char **env, t_data *data);
-void	processes(t_data *data, char **argv);
+void	processes(t_data *data, int argc, char **argv);
 void	middle_processes(t_data *data);
 void	first_process(t_data *data, char **argv);
 
@@ -33,6 +33,7 @@ void	execute(t_data *data);
 void	init_variables(t_data *data);
 
 void	ft_error();
+void	open_files(int argc, char **argv, t_data *data);
 void	here_doc(t_data *data, char **argv);
 
 #endif

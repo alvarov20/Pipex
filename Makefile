@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: averdejo <averdejo@student.42madrid.com>   +#+  +:+       +#+         #
+#    By: averdejo <averdejo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 11:21:23 by averdejo          #+#    #+#              #
-#    Updated: 2023/12/14 18:20:05 by averdejo         ###   ########.fr        #
+#    Updated: 2023/12/19 15:13:38 by averdejo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 RM = rm -f
 CC = cc
-CFLAGS = #-Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 
 LIBFT_DIR = libft/
 LIBFT = $(LIBFT_DIR)libft.a
