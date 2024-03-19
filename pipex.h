@@ -1,5 +1,5 @@
-#ifndef PIPEX_BONUS_H
-# define PIPEX_BONUS_H
+#ifndef PIPEX_H
+# define PIPEX_H
 # include "libft/libft.h"
 # include "ft_printf/ft_printf.h"
 # include <stdlib.h>
@@ -21,7 +21,7 @@ typedef struct s_data
 
 }			t_data;
 
-void	big_pipex(int argc, char **argv, char **env, t_data *data);
+void	pipex(int argc, char **argv, char **env, t_data *data);
 void	processes(t_data *data, int argc, char **argv);
 void	middle_processes(t_data *data);
 void	first_process(t_data *data, char **argv);
@@ -32,7 +32,6 @@ void	get_path(char **env, t_data *data);
 void	execute(t_data *data);
 void	init_variables(t_data *data);
 
-void	ft_error();
 void	open_files(int argc, char **argv, t_data *data);
 void	here_doc(t_data *data, char **argv);
 

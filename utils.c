@@ -8,7 +8,7 @@ char	*check_access(t_data *data, char **com)
 	x = 0;
 	compath = NULL;
 	if (!com[0])
-		return("error");
+		return ("error");
 	if (access(com[0], F_OK | X_OK) == -1)
 	{
 		if (data->path == NULL)
@@ -34,7 +34,7 @@ void	get_args(int argc, char **argv, t_data *d)
 	if (d->args == NULL)
 		return ;
 	x = 0;
-	while(x != argc - (3 + d->hc))
+	while (x != argc - (3 + d->hc))
 	{
 		d->args[x] = argv[x + 2 + d->hc];
 		x++;
@@ -47,13 +47,13 @@ void	get_path(char **env, t_data *data)
 	int	x;
 
 	x = 0;
-	if (!env  || env[x] == NULL)
+	if (!env || env[x] == NULL)
 		return ;
 	while (env[x] != NULL)
 	{
 		if (ft_strnstr(env[x], "PATH=", 5) != NULL)
 		{
-			if (env[x][0]) //Esta creo que es redundante
+			if (env[x][0])
 				env[x] += 5;
 			data->path = ft_split(env[x], ':');
 		}
@@ -92,6 +92,4 @@ void	init_variables(t_data *data)
 	data->args = NULL;
 	data->path = NULL;
 	data->hc = 0;
-	//data->fd1 = 0;
-	//data->fd2 = 0;
 }

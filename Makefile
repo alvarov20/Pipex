@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: averdejo <averdejo@student.42.fr>          +#+  +:+       +#+         #
+#    By: averdejo <averdejo@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 11:21:23 by averdejo          #+#    #+#              #
-#    Updated: 2023/12/19 15:13:38 by averdejo         ###   ########.fr        #
+#    Updated: 2024/03/19 19:02:23 by averdejo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ PRINTF = $(DIR_PRINTF)libftprintf.a
 
 SRC = main.c \
 	utils.c \
-	big_pipex.c \
+	pipex.c \
 
 OBJ = $(SRC:%.c=%.o)
 
